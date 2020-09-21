@@ -21,6 +21,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"os"
 	"path/filepath"
 	"strings"
@@ -40,7 +41,7 @@ const (
 	// TokenEnvKey is the default GitHub token environemt variable key
 	TokenEnvKey = "GITHUB_TOKEN"
 	// GitHubURL Prefix for github URLs
-	GitHubURL = "https://github.com/"
+	GitHubURL = "https://github.ibm.com/"
 )
 
 // GitHub is a wrapper around GitHub related functionality
@@ -120,6 +121,10 @@ func New() *GitHub {
 		))
 	}
 	logrus.Debugf("Using %s GitHub client", state)
+
+	c := github.NewClient(client)
+	c.BaseURL, _ = url.Parse("https://api.github.ibm.com/")
+	c.UploadURL, _ = url.Parse("https://uploads.github.ibm.com/")
 	return &GitHub{&githubClient{github.NewClient(client)}}
 }
 

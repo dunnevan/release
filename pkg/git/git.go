@@ -48,7 +48,7 @@ const (
 	DefaultRef               = "HEAD"
 	DefaultBranch            = "master"
 
-	defaultGithubAuthRoot = "git@github.com:"
+	defaultGithubAuthRoot = "git@github.ibm.com:"
 	gitExecutable         = "git"
 )
 
